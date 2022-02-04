@@ -1,0 +1,77 @@
+$engine: 3
+name: RedEMRp
+version: 1.0.0
+author: Abdulkadir Aktaş
+description: Bu tarif RedEMRp için Abdulkadir Aktaş tarafından hazırlanmıştır.
+
+tasks:
+#  Download Base Files
+  - action: download_github
+    src: https://github.com/abdulkadiraktas/RedEMRp_txAdminRecipe
+    ref: main
+    dest: ./tmp/RedEMRp_txAdminRecipe
+  
+  - action: move_path
+    src: ./tmp/RedEMRp_txAdminRecipe/server.cfg
+    dest: ./server.cfg
+  
+  - action: move_path
+    src: ./tmp/RedEMRp_txAdminRecipe/redmRP.png
+    dest: ./redmRP.png
+
+# Prepare Database
+#  - action: connect_database
+#  - action: query_database
+#    file: ./tmp/RedEMRp_txAdminRecipe/RedEMRp.sql
+  
+# STANDALONE CFX
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    subpath: resources
+    dest: ./resources/[cfx-default]    
+    
+  - action: download_github
+    src: https://github.com/Duguayster/ghmattimysql
+    ref: main
+    dest: ./tmp/ghmattimysql
+
+  - action: move_path
+    src: ./tmp/ghmattimysql/ghmattimysql
+    dest: ./resources/[sql]/ghmattimysql    
+
+# redem
+  - action: download_github
+    src: https://github.com/kanersps/redem
+    ref: master
+    dest: ./resources/[redem]/redem
+
+# redem_roleplay
+  - action: download_github
+    src: https://github.com/RedEM-RP/redem_roleplay
+    ref: master
+    dest: ./resources/[redem]/redem_roleplay   
+
+# mysql-async    
+  - action: download_github
+    src: https://github.com/amakuu/mysql-async-temporary
+    ref: master
+    dest: ./tmp/mysql-async-temporary
+
+  - action: move_path
+    src: ./tmp/mysql-async-temporary
+    dest: ./resources/[sql]/mysql-async
+    
+# redemrp_identity
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_identity
+    ref: master
+    dest: ./resources/[redem]/redemrp_identity 
+    
+# redemrp_respawn
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_respawn
+    ref: master
+    dest: ./resources/[redem]/redemrp_respawn
+
+  - action: remove_path
+    path: ./tmp
