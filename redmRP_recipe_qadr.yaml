@@ -20,9 +20,9 @@ tasks:
     dest: ./redmRP.png
 
 # Prepare Database
-#  - action: connect_database
-#  - action: query_database
-#    file: ./tmp/RedEMRp_txAdminRecipe/RedEMRp.sql
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/RedEMRp_txAdminRecipe/RedEMRp.sql
   
 # STANDALONE CFX
   - action: download_github
@@ -60,6 +60,12 @@ tasks:
   - action: move_path
     src: ./tmp/mysql-async-temporary
     dest: ./resources/[sql]/mysql-async
+
+# esplugin_mysql
+  - action: download_github
+    src: https://github.com/RedEM-RP/esplugin_mysql
+    ref: master
+    dest: ./resources/[sql]/esplugin_mysql
     
 # redemrp_identity
   - action: download_github

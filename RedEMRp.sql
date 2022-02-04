@@ -1,0 +1,1 @@
+CREATE DATABASE `redemrp` /*!40100 COLLATE 'utf8_turkish_ci' */;
