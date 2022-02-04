@@ -22,8 +22,25 @@ tasks:
 # Prepare Database
   - action: connect_database
   - action: query_database
-    file: ./tmp/RedEMRp_txAdminRecipe/RedEMRp.sql
+    query: |
+      DROP DATABASE IF EXISTS `redemrp`;
+      CREATE DATABASE IF NOT EXISTS `redemrp`;
+
+  - action: write_file
+    file: ./tmp/delete.sql
+    append: true
+    data: |
+      ensure
+
+  - action: replace_string
+    file: ./tmp/delete.sql
+    search: "ensure"
+    replace: "DROP DATABASE IF EXISTS `{{dbName}}`"
   
+  - action: query_database
+    file: ./tmp/delete.sql
+
+
 # STANDALONE CFX
   - action: download_github
     src: https://github.com/citizenfx/cfx-server-data
@@ -78,6 +95,79 @@ tasks:
     src: https://github.com/RedEM-RP/redemrp_respawn
     ref: master
     dest: ./resources/[redem]/redemrp_respawn
+    
+# redemrp_inventory
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_inventory
+    ref: master
+    dest: ./resources/[redem]/redemrp_inventory
+    
+# redemrp_skin
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_skin
+    ref: master
+    dest: ./resources/[redem]/redemrp_skin
+    
+# redemrp_clothing
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_clothing
+    ref: master
+    dest: ./resources/[redem]/redemrp_clothing
+    
+# redemrp_menu_base
+  - action: download_github
+    src: https://github.com/abdulkadiraktas/redemrp_menu_base
+    ref: master
+    dest: ./resources/[redem]/redemrp_menu_base
+    
+# redemrp_clothing
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_clothing
+    ref: master
+    dest: ./resources/[redem]/redemrp_clothing
+    
+# redemrp_progressbars
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_progressbars
+    ref: master
+    dest: ./resources/[redem]/redemrp_progressbars
+    
+# redemrp_status
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_status
+    ref: master
+    dest: ./resources/[redem]/redemrp_status
+    
+# redemrp_shops
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_shops
+    ref: master
+    dest: ./resources/[redem]/redemrp_shops
+    
+# redemrp_blueberry
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_blueberry
+    ref: master
+    dest: ./resources/[redem]/redemrp_blueberry
+    
+# redemrp_quests
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_quests
+    ref: master
+    dest: ./resources/[redem]/redemrp_quests
+    
+# redemrp_dialog
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_dialog
+    ref: master
+    dest: ./resources/[redem]/redemrp_dialog
+    
+# redemrp_farmerjob
+  - action: download_github
+    src: https://github.com/RedEM-RP/redemrp_farmerjob
+    ref: master
+    dest: ./resources/[redem]/redemrp_farmerjob
 
+# Clean tmp
   - action: remove_path
     path: ./tmp
