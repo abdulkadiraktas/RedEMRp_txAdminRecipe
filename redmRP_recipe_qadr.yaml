@@ -107,7 +107,7 @@ tasks:
 # redemrp_inventory
   - action: download_github
     src: https://github.com/RedEM-RP/redemrp_inventory
-    ref: 2.0
+    ref: '2.0'
     dest: ./resources/[redem]/redemrp_inventory
     
 # redemrp_skin
