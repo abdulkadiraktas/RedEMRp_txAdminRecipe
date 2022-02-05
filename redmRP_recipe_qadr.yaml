@@ -22,7 +22,8 @@ tasks:
 # Prepare Database
   - action: connect_database
   - action: query_database
-    query: |
+    query: |      
+      DROP DATABASE IF EXISTS `redemrp`;
       CREATE DATABASE IF NOT EXISTS `redemrp`;
 
   - action: write_file
@@ -69,6 +70,12 @@ tasks:
     ref: master
     dest: ./resources/[redem]/redem_roleplay   
 
+# db_1.sql update
+  - action: replace_string
+    file: ./resources/[redem]/redem_roleplay/server/sql/db_1.sql
+    search: 'DROP DATABASE IF EXISTS `redemrp`;'
+    replace: '' 
+
 # mysql-async    
   - action: download_github
     src: https://github.com/amakuu/mysql-async-temporary
@@ -100,7 +107,7 @@ tasks:
 # redemrp_inventory
   - action: download_github
     src: https://github.com/RedEM-RP/redemrp_inventory
-    ref: master
+    ref: 2.0
     dest: ./resources/[redem]/redemrp_inventory
     
 # redemrp_skin
