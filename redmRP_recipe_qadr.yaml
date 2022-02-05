@@ -23,7 +23,6 @@ tasks:
   - action: connect_database
   - action: query_database
     query: |
-      DROP DATABASE IF EXISTS `redemrp`;
       CREATE DATABASE IF NOT EXISTS `redemrp`;
 
   - action: write_file
@@ -39,7 +38,9 @@ tasks:
   
   - action: query_database
     file: ./tmp/delete.sql
-
+  
+  - action: query_database
+    file: ./tmp/RedEMRp_txAdminRecipe/RedEMRp.sql
 
 # STANDALONE CFX
   - action: download_github
@@ -120,34 +121,28 @@ tasks:
     ref: master
     dest: ./resources/[redem]/redemrp_menu_base
     
-# redemrp_clothing
-  - action: download_github
-    src: https://github.com/RedEM-RP/redemrp_clothing
-    ref: master
-    dest: ./resources/[redem]/redemrp_clothing
-    
 # redemrp_progressbars
   - action: download_github
     src: https://github.com/RedEM-RP/redemrp_progressbars
-    ref: master
+    ref: main
     dest: ./resources/[redem]/redemrp_progressbars
     
 # redemrp_status
   - action: download_github
     src: https://github.com/RedEM-RP/redemrp_status
-    ref: master
+    ref: main
     dest: ./resources/[redem]/redemrp_status
     
 # redemrp_shops
   - action: download_github
     src: https://github.com/RedEM-RP/redemrp_shops
-    ref: master
+    ref: main
     dest: ./resources/[redem]/redemrp_shops
     
 # redemrp_blueberry
   - action: download_github
     src: https://github.com/RedEM-RP/redemrp_blueberry
-    ref: master
+    ref: main
     dest: ./resources/[redem]/redemrp_blueberry
     
 # redemrp_quests
